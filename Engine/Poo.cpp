@@ -1,6 +1,14 @@
 #include "Poo.h"
 #include "Graphics.h"
 
+Poo::Poo(int in_x, int in_y, int in_vx, int in_vy)
+{
+	x = in_x;
+	y = in_y;
+	vx = in_vx;
+	vy = in_vy;
+}
+
 void Poo::Update()
 {
 	x += vx;
@@ -33,15 +41,15 @@ void Poo::Update()
 
 void Poo::ProcessConsumption(const Dude& dude)
 {
-	const int duderight = dude.x + dude.width;
-	const int dudebottom = dude.y + dude.height;
+	const int duderight = dude.GetX() + dude.GetWidth();
+	const int dudebottom = dude.GetY() + dude.GetHeight();
 	const int pooright = x + width;
 	const int poobottom = y + height;
 
 	if (duderight >= x &&
-		dude.x <= pooright &&
+		dude.GetX() <= pooright &&
 		dudebottom >= y &&
-		dude.y <= poobottom)
+		dude.GetY() <= poobottom)
 	{
 		isEaten = true;
 	}
@@ -280,4 +288,9 @@ void Poo::Draw(Graphics& gfx) const
 	gfx.PutPixel(4 + x, 23 + y, 51, 28, 0);
 	gfx.PutPixel(5 + x, 23 + y, 51, 28, 0);
 	gfx.PutPixel(6 + x, 23 + y, 51, 28, 0);
+}
+
+bool Poo::IsEaten() const
+{
+	return isEaten;
 }

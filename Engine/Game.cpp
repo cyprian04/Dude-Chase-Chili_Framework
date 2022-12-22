@@ -22,33 +22,28 @@
 #include "Game.h"
 #include <random>
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd )
+	wnd(wnd),
+	gfx(wnd),
+	rng(rd()),
+	xDist(0, 770),
+	yDist(0, 570),
+	poo0(xDist(rng), yDist(rng), 1, 1),
+	poo1(xDist(rng), yDist(rng), -1, 1),
+	poo2(xDist(rng), yDist(rng), 1, -1),
+	poo3(xDist(rng), yDist(rng), 1, 1),
+	poo4(xDist(rng), yDist(rng), -1, 1),
+	poo5(xDist(rng), yDist(rng), 1, -1),
+	poo6(xDist(rng), yDist(rng), 1, 1),
+	poo7(xDist(rng), yDist(rng), -1, 1),
+	poo8(xDist(rng), yDist(rng), 1, -1)
 {
-	std::random_device rd;
-	std::mt19937 rng(rd());
-	std::uniform_int_distribution<int> xDist(0, 770);
-	std::uniform_int_distribution<int> yDist(0, 570);
-	poo0.x = xDist(rng);
-	poo0.y = yDist(rng);
-	poo1.x = xDist(rng);
-	poo1.y = yDist(rng);
-	poo2.x = xDist(rng);
-	poo2.y = yDist(rng);
-
-	poo0.vx = 1;
-	poo0.vy = 1;
-	poo1.vx = -1;
-	poo1.vy = 1;
-	poo2.vx = 1;
-	poo2.vy = -1;
 }
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
+	gfx.BeginFrame();
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
@@ -58,32 +53,28 @@ void Game::UpdateModel()
 {
 	if (isStarted)
 	{
-		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-		{
-			dude.x += 1;
-		}
-		if (wnd.kbd.KeyIsPressed(VK_LEFT))
-		{
-			dude.x -= 1;
-		}
-		if (wnd.kbd.KeyIsPressed(VK_DOWN))
-		{
-			dude.y += 1;
-		}
-		if (wnd.kbd.KeyIsPressed(VK_UP))
-		{
-			dude.y -= 1;
-		}
-
+		dude.Update(wnd.kbd);
 		dude.ClampToScreen();
 
 		poo0.Update();
 		poo1.Update();
 		poo2.Update();
+		poo3.Update();
+		poo4.Update();
+		poo5.Update();
+		poo6.Update();
+		poo7.Update();
+		poo8.Update();
 
 		poo0.ProcessConsumption(dude);
 		poo1.ProcessConsumption(dude);
 		poo2.ProcessConsumption(dude);
+		poo3.ProcessConsumption(dude);
+		poo4.ProcessConsumption(dude);
+		poo5.ProcessConsumption(dude);
+		poo6.ProcessConsumption(dude);
+		poo7.ProcessConsumption(dude);
+		poo8.ProcessConsumption(dude);
 	}
 	else
 	{
@@ -28448,23 +28439,48 @@ void Game::ComposeFrame()
 	}
 	else
 	{
-		if (poo0.isEaten && poo1.isEaten && poo2.isEaten)
+		if (poo0.IsEaten() && poo1.IsEaten() && poo2.IsEaten() &&
+			poo3.IsEaten() && poo4.IsEaten() && poo5.IsEaten() &&
+			poo6.IsEaten() && poo7.IsEaten() && poo8.IsEaten())
 		{
 			DrawGameOver(358, 268);
 		}
 		dude.Draw(gfx);
-		if (!poo0.isEaten)
+		if (!poo0.IsEaten())
 		{
 			poo0.Draw(gfx);
 		}
-		if (!poo1.isEaten)
+		if (!poo1.IsEaten())
 		{
 			poo1.Draw(gfx);
 		}
-		if (!poo2.isEaten)
+		if (!poo2.IsEaten())
 		{
 			poo2.Draw(gfx);
 		}
+		if (!poo3.IsEaten())
+		{
+			poo3.Draw(gfx);
+		}
+		if (!poo4.IsEaten())
+		{
+			poo4.Draw(gfx);
+		}
+		if (!poo5.IsEaten())
+		{
+			poo5.Draw(gfx);
+		}
+		if (!poo6.IsEaten())
+		{
+			poo6.Draw(gfx);
+		}
+		if (!poo7.IsEaten())
+		{
+			poo7.Draw(gfx);
+		}
+		if (!poo8.IsEaten())
+		{
+			poo8.Draw(gfx);
+		}
 	}
 }
-

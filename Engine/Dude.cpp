@@ -1,6 +1,29 @@
 #include "Dude.h"
 #include "Graphics.h"
 
+void Dude::ClampToScreen()
+{
+	const int right = x + width;
+	if (x < 0)
+	{
+		x = 0;
+	}
+	else if (right >= Graphics::ScreenWidth)
+	{
+		x = (Graphics::ScreenWidth - 1) - width;
+	}
+
+	const int bottom = y + height;
+	if (y < 0)
+	{
+		y = 0;
+	}
+	else if (bottom >= Graphics::ScreenHeight)
+	{
+		y = (Graphics::ScreenHeight - 1) - height;
+	}
+}
+
 void Dude::Draw(Graphics& gfx) const
 {
 	gfx.PutPixel(7 + x, 0 + y, 0, 0, 0);
@@ -321,25 +344,42 @@ void Dude::Draw(Graphics& gfx) const
 	gfx.PutPixel(12 + x, 19 + y, 0, 0, 0);
 }
 
-void Dude::ClampToScreen()
+void Dude::Update(const Keyboard& kbd)
 {
-	const int right = x + width;
-	if (x < 0)
+	if (kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x = 0;
+		x += speed;
 	}
-	else if (right >= Graphics::ScreenWidth)
+	if (kbd.KeyIsPressed(VK_LEFT))
 	{
-		x = (Graphics::ScreenWidth - 1) - width;
+		x -= speed;
 	}
+	if (kbd.KeyIsPressed(VK_DOWN))
+	{
+		y += speed;
+	}
+	if (kbd.KeyIsPressed(VK_UP))
+	{
+		y -= speed;
+	}
+}
 
-	const int bottom = y + height;
-	if (y < 0)
-	{
-		y = 0;
-	}
-	else if (bottom >= Graphics::ScreenHeight)
-	{
-		y = (Graphics::ScreenHeight - 1) - height;
-	}
+int Dude::GetX() const
+{
+	return x;
+}
+
+int Dude::GetY() const
+{
+	return y;
+}
+
+int Dude::GetWidth() const
+{
+	return width;
+}
+
+int Dude::GetHeight() const
+{
+	return height;
 }
