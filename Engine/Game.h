@@ -23,6 +23,9 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Poo.h"
+#include "Dude.h"
+
 
 class Game
 {
@@ -36,11 +39,20 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	void DrawFace(int x, int y);
+	void DrawPoo(int x, int y);
+	void DrawGameOver(int x, int y);
+	void DrawTitleScreen(int x, int y);
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Dude dude;
+	Poo poo0;
+	Poo poo1;
+	Poo poo2;
+	bool isStarted = false;
 	/********************************/
 };
