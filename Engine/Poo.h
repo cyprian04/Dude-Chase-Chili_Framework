@@ -6,7 +6,7 @@ class Poo
 {
 public:
 	void Init(float in_x, float in_y, float in_vx, float in_vy);
-	void Update();
+	void Update(float dt_in);
 	void ProcessConsumption(const Dude& dude);
 	void StopPoo(float vx_in, float vy_in);
 	void Draw(Graphics& gfx) const;

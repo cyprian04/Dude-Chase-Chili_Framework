@@ -7,7 +7,7 @@ class Dude
 public:
 	void ClampToScreen();
 	void Draw(Graphics& gfx) const;
-	void Update(const Keyboard& kbd);
+	void Update(const Keyboard& kbd, float dt_in);
 	bool SetIsStopped();
 	float GetX() const;
 	float GetY() const;
@@ -17,7 +17,7 @@ private:
 	float x = 400.0f;
 	float y = 300.0f;
 	bool isStopped = false;
-	static constexpr float speed = 1.0f;
+	static constexpr float speed = 1.0f * 144.0f;
 	static constexpr float width = 20.0f;
 	static constexpr float height = 20.0f;
 };

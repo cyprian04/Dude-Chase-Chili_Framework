@@ -27,6 +27,7 @@
 #include "Dude.h"
 #include <random>
 #include "Goal.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -54,6 +55,7 @@ private:
 	std::uniform_real_distribution<float> yDist;
 	std::uniform_real_distribution<float> vDist;
 	std::uniform_real_distribution<float> RectDist;
+	FrameTimer ft;
 	Dude dude;
 	bool isStarted = false;
 	static constexpr int nPoo = 7;

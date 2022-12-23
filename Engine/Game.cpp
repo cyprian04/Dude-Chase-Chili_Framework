@@ -34,7 +34,7 @@ Game::Game(MainWindow& wnd)
 {
 	for (int i = 0; i < nPoo; ++i)
 	{
-	poos[i].Init(xDist(rng), yDist(rng), vDist(rng), vDist(rng));
+	poos[i].Init(xDist(rng), yDist(rng), vDist(rng) * 144.0f, vDist(rng) * 144.0f);
 	}
 }
 
@@ -50,14 +50,17 @@ void Game::UpdateModel()
 {
 	if (isStarted)
 	{
-		dude.Update(wnd.kbd);
+		float dt = ft.Mark();  
+		dude.Update(wnd.kbd, dt);
 		dude.ClampToScreen();
 		gfx.DrawCircle(100, 100, 50, Colors::Yellow);
-		gfx.DrawCircle(300, 100, 50, Colors::Green);
+		gfx.DrawCircle(350, 100, 50, Colors::Green);
+		gfx.DrawCircle(600, 100, 50, Colors::Red);
+
 		for (int i = 0; i < nPoo; ++i)
 		{
 			poos[i].ProcessConsumption(dude);
-			poos[i].Update();
+			poos[i].Update(dt);
 			if (poos[i].GetIsEaten())
 			{
 				dude.SetIsStopped();
