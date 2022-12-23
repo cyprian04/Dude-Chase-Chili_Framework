@@ -68,8 +68,7 @@ void Game::UpdateModel()
 		}
 		if (goal.GetTeleport())
 		{
-			goal.Respawn(RectDist(rng), RectDist(rng));			// teleportuje goal    //
-			goal.SetTeleportFalse();
+			goal.Respawn(RectDist(rng), RectDist(rng));			// nadaje wartoæi x i y dla kwadradu(naszego goala) i nastêpnie blokuje teleport   //
 		}	
 
 		goal.ChangeColor();

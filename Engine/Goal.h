@@ -14,7 +14,6 @@ public:
 		gfx.DrawRectDim(x, y, dimension, dimension, c);
 	}
 	bool GetTeleport() const;
-	bool SetTeleportFalse();
 private:
 	Color c = { 255, 255, 150};
 	int x;

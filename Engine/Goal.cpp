@@ -21,6 +21,7 @@ void Goal::Respawn(int x_in, int y_in)
 {
 	x = x_in;
 	y = y_in;
+	teleport = false;
 }
 
 void Goal::ProcessConsumption(const Dude& dude)
@@ -62,11 +63,5 @@ void Goal::ChangeColor()
 
 bool Goal::GetTeleport() const
 {
-	return teleport;
-}
-
-bool Goal::SetTeleportFalse()
-{
-	teleport = false;
 	return teleport;
 }
