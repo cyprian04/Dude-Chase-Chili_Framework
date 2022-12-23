@@ -53,14 +53,14 @@ void Game::UpdateModel()
 		dude.Update(wnd.kbd);
 		dude.ClampToScreen();
 
-		for (size_t i = 0; i < nPoo; ++i)
+		for (int i = 0; i < nPoo; ++i)
 		{
 			poos[i].ProcessConsumption(dude);
 			poos[i].Update();
 			if (poos[i].GetIsEaten())
 			{
 				dude.SetIsStopped();
-				for (size_t i = 0; i < nPoo; i++)
+				for (int i = 0; i < nPoo; i++)
 				{
 					poos[i].StopPoo(0, 0);
 				}

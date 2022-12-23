@@ -13,8 +13,6 @@ public:
 	{
 		gfx.DrawRectDim(x, y, dimension, dimension, c);
 	}
-	int GetX() const;
-	int GetY() const;
 	bool GetTeleport() const;
 	bool SetTeleportFalse();
 private:

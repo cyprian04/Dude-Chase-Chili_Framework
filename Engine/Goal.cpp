@@ -60,16 +60,6 @@ void Goal::ChangeColor()
 	}
 }
 
-int Goal::GetX() const
-{
-	return x;
-}
-
-int Goal::GetY() const
-{
-	return y;
-}
-
 bool Goal::GetTeleport() const
 {
 	return teleport;
