@@ -60,6 +60,12 @@ void Poo::ProcessConsumption(const Dude& dude)
 	}
 }
 
+void Poo::StopPoo(int vx_in, int vy_in)
+{
+	vx = vx_in;
+	vy = vy_in;
+}
+
 void Poo::Draw(Graphics& gfx) const
 {
 	assert(initialized == true);
@@ -296,7 +302,7 @@ void Poo::Draw(Graphics& gfx) const
 	gfx.PutPixel(6 + x, 23 + y, 51, 28, 0);
 }
 
-bool Poo::IsEaten() const
+bool Poo::GetIsEaten() const
 {
 	assert(initialized == true);
 	return isEaten;

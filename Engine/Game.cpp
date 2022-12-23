@@ -29,7 +29,8 @@ Game::Game(MainWindow& wnd)
 	rng(rd()),
 	xDist(0, 770),
 	yDist(0, 570),
-	vDist(-1, 1)	
+	vDist(-1, 1),
+	RectDist(50,520)
 {
 	for (int i = 0; i < nPoo; ++i)
 	{
@@ -52,10 +53,18 @@ void Game::UpdateModel()
 			dude.Update(wnd.kbd);
 			dude.ClampToScreen();
 
-			for (int i = 0; i < nPoo; ++i)
+			for (size_t i = 0; i < nPoo; ++i)
 			{
-				poos[i].Update();
 				poos[i].ProcessConsumption(dude);
+				poos[i].Update();
+				if (poos[i].GetIsEaten())
+				{
+					dude.SetIsStopped();
+					for (size_t i = 0; i < nPoo; i++)
+					{
+						poos[i].StopPoo(0, 0);
+					}
+				}
 			}
 		}
 		else
@@ -28425,17 +28434,17 @@ void Game::ComposeFrame()
 		bool allEaten = true;
 		for (int i = 0; i < nPoo; ++i)
 		{
-			allEaten = allEaten && poos[i].IsEaten();
+			allEaten = allEaten && poos[i].GetIsEaten();
 		}
 		if (allEaten)
 		{
 			DrawGameOver(358, 268);
 		}
-		dude.Draw(gfx);
 
+		dude.Draw(gfx);
 		for (int i = 0; i < nPoo; ++i)
 		{
-			if (!poos[i].IsEaten())
+			if (!poos[i].GetIsEaten())
 			{
 				poos[i].Draw(gfx);
 			}

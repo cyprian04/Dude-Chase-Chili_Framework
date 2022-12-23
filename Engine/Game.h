@@ -52,6 +52,7 @@ private:
 	std::uniform_int_distribution<int> xDist;
 	std::uniform_int_distribution<int> yDist;
 	std::uniform_int_distribution<int> vDist;
+	std::uniform_int_distribution<int> RectDist;
 	Dude dude;
 	static constexpr int nPoo = 10;
 	Poo poos[nPoo];
