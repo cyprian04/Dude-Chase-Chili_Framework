@@ -34,7 +34,7 @@ Game::Game(MainWindow& wnd)
 {
 	for (int i = 0; i < nPoo; ++i)
 	{
-	poos[i].Init(xDist(rng), yDist(rng), vDist(rng) * 144.0f, vDist(rng) * 144.0f);
+	poos[i].Init(xDist(rng), yDist(rng), vDist(rng) * 144.0f, vDist(rng) * 144.0f); //mno¿e przez 144 aby obiekt poruszy³ siê 144 piksele na sekunde(oko³o) // 
 	}
 }
 
@@ -50,7 +50,7 @@ void Game::UpdateModel()
 {
 	if (isStarted)
 	{
-		float dt = ft.Mark();  
+		float dt = ft.Mark();		// odmierza czas wrócenia do tego momentu w ci¹gu jednej klatki //
 		dude.Update(wnd.kbd, dt);
 		dude.ClampToScreen();
 		gfx.DrawCircle(100, 100, 50, Colors::Yellow);

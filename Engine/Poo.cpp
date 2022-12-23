@@ -16,8 +16,8 @@ void Poo::Init(float in_x, float in_y, float in_vx, float in_vy)
 void Poo::Update(float dt_in)
 {
 	assert(initialized == true);
-	x += vx * dt_in;
-	y += vy * dt_in;
+	x += vx * dt_in; 
+	y += vy * dt_in; 
 
 	const float right = x + width;
 	if (x < 0)

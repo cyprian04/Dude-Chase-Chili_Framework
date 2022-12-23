@@ -353,7 +353,7 @@ void Dude::Update(const Keyboard& kbd, float dt_in)
 	{
 		if (kbd.KeyIsPressed(VK_RIGHT))
 		{
-			x += speed* dt_in;
+			x += speed* dt_in; 
 		}
 		if (kbd.KeyIsPressed(VK_LEFT))
 		{
