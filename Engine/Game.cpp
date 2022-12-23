@@ -52,7 +52,8 @@ void Game::UpdateModel()
 	{
 		dude.Update(wnd.kbd);
 		dude.ClampToScreen();
-
+		gfx.DrawCircle(100, 100, 50, Colors::Yellow);
+		gfx.DrawCircle(300, 100, 50, Colors::Green);
 		for (int i = 0; i < nPoo; ++i)
 		{
 			poos[i].ProcessConsumption(dude);
