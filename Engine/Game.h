@@ -26,6 +26,7 @@
 #include "Poo.h"
 #include "Dude.h"
 #include <random>
+#include "Goal.h"
 
 class Game
 {
@@ -54,8 +55,9 @@ private:
 	std::uniform_int_distribution<int> vDist;
 	std::uniform_int_distribution<int> RectDist;
 	Dude dude;
-	static constexpr int nPoo = 10;
-	Poo poos[nPoo];
 	bool isStarted = false;
+	static constexpr int nPoo = 7;
+	Poo poos[nPoo];
+	Goal goal;
 	/********************************/
 };

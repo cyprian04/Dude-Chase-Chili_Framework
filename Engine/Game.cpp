@@ -48,33 +48,40 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-		if (isStarted)
-		{
-			dude.Update(wnd.kbd);
-			dude.ClampToScreen();
+	if (isStarted)
+	{
+		dude.Update(wnd.kbd);
+		dude.ClampToScreen();
 
-			for (size_t i = 0; i < nPoo; ++i)
+		for (size_t i = 0; i < nPoo; ++i)
+		{
+			poos[i].ProcessConsumption(dude);
+			poos[i].Update();
+			if (poos[i].GetIsEaten())
 			{
-				poos[i].ProcessConsumption(dude);
-				poos[i].Update();
-				if (poos[i].GetIsEaten())
+				dude.SetIsStopped();
+				for (size_t i = 0; i < nPoo; i++)
 				{
-					dude.SetIsStopped();
-					for (size_t i = 0; i < nPoo; i++)
-					{
-						poos[i].StopPoo(0, 0);
-					}
+					poos[i].StopPoo(0, 0);
 				}
 			}
 		}
-		else
+		if (goal.GetTeleport())
 		{
-			if (wnd.kbd.KeyIsPressed(VK_RETURN))
-			{
-				isStarted = true;
-			}
+			goal.Respawn(RectDist(rng), RectDist(rng));			// teleportuje goal    //
+			goal.SetTeleportFalse();
+		}	
+
+		goal.ChangeColor();
+		goal.ProcessConsumption(dude);							// sprawdza czy goal koliduje z dude //
+	}	
+	else
+	{
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			isStarted = true;
 		}
-	
+	}
 }
 
 void Game::DrawGameOver(int x, int y)
@@ -28431,22 +28438,21 @@ void Game::ComposeFrame()
 	}
 	else
 	{
-		bool allEaten = true;
-		for (int i = 0; i < nPoo; ++i)
+		if (!goal.GetTeleport()) 
 		{
-			allEaten = allEaten && poos[i].GetIsEaten();
-		}
-		if (allEaten)
-		{
-			DrawGameOver(358, 268);
-		}
+			goal.Draw(gfx);
+		}	
 
 		dude.Draw(gfx);
+		goal.Bar(Colors::Magenta, gfx);
+
 		for (int i = 0; i < nPoo; ++i)
 		{
-			if (!poos[i].GetIsEaten())
+			poos[i].Draw(gfx);
+			
+			if(poos[i].GetIsEaten())
 			{
-				poos[i].Draw(gfx);
+				DrawGameOver(358, 268);
 			}
 		}
 	}

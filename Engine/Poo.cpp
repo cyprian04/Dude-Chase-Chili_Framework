@@ -1,3 +1,4 @@
+#pragma once
 #include "Poo.h"
 #include "Graphics.h"
 #include <assert.h>
