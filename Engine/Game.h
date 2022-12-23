@@ -50,10 +50,10 @@ private:
 	/*  User Variables              */
 	std::random_device rd;
 	std::mt19937 rng;
-	std::uniform_int_distribution<int> xDist;
-	std::uniform_int_distribution<int> yDist;
-	std::uniform_int_distribution<int> vDist;
-	std::uniform_int_distribution<int> RectDist;
+	std::uniform_real_distribution<float> xDist;
+	std::uniform_real_distribution<float> yDist;
+	std::uniform_real_distribution<float> vDist;
+	std::uniform_real_distribution<float> RectDist;
 	Dude dude;
 	bool isStarted = false;
 	static constexpr int nPoo = 7;

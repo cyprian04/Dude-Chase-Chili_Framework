@@ -29,7 +29,7 @@ Game::Game(MainWindow& wnd)
 	rng(rd()),
 	xDist(0, 770),
 	yDist(0, 570),
-	vDist(-1, 1),
+	vDist(-2.0f, 2.0f),
 	RectDist(50,520)
 {
 	for (int i = 0; i < nPoo; ++i)
@@ -72,7 +72,7 @@ void Game::UpdateModel()
 		}	
 
 		goal.ChangeColor();
-		goal.ProcessConsumption(dude);							// sprawdza czy goal koliduje z dude //
+		goal.ProcessConsumption(dude);
 	}	
 	else
 	{

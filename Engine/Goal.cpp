@@ -17,7 +17,7 @@ void Goal::Bar( Color c, Graphics& gfx)
 	}
 }
 
-void Goal::Respawn(int x_in, int y_in)
+void Goal::Respawn(float x_in, float y_in)
 {
 	x = x_in;
 	y = y_in;
@@ -26,10 +26,10 @@ void Goal::Respawn(int x_in, int y_in)
 
 void Goal::ProcessConsumption(const Dude& dude)
 {
-	const int duderight = dude.GetX() + dude.GetWidth();
-	const int dudebottom = dude.GetY() + dude.GetHeight();
-	const int pooright = x + dimension;
-	const int poobottom = y + dimension;
+	const float duderight = dude.GetX() + dude.GetWidth();
+	const float dudebottom = dude.GetY() + dude.GetHeight();
+	const float pooright = x + dimension;
+	const float poobottom = y + dimension;
 
 	if (duderight >= x &&
 		dude.GetX() <= pooright &&
