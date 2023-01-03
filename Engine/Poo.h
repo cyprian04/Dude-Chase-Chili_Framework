@@ -1,21 +1,19 @@
 #pragma once
 #include "Graphics.h"
 #include "Dude.h"
-
+#include "Vec2.h"
 class Poo
 {
 public:
-	void Init(float in_x, float in_y, float in_vx, float in_vy);
+	void Init(const Vec2& pos_in, const Vec2& vel_in);
 	void Update(float dt_in);
 	void ProcessConsumption(const Dude& dude);
-	void StopPoo(float vx_in, float vy_in);
+	void StopPoo(const Vec2& vel_in);
 	void Draw(Graphics& gfx) const;
 	bool GetIsEaten() const;
 private:
-	float x;
-	float y;
-	float vx;
-	float vy;
+	Vec2 pos;
+	Vec2 vel;
 	static constexpr float width = 24.0f;
 	static constexpr float height = 24.0f;
 	bool isEaten = false;

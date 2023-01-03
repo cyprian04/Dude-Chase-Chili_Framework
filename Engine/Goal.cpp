@@ -17,24 +17,23 @@ void Goal::Bar( Color c, Graphics& gfx)
 	}
 }
 
-void Goal::Respawn(float x_in, float y_in)
+void Goal::Respawn(const Vec2& pos_in)
 {
-	x = x_in;
-	y = y_in;
+	pos = pos_in;
 	teleport = false;
 }
 
 void Goal::ProcessConsumption(const Dude& dude)
 {
-	const float duderight = dude.GetX() + dude.GetWidth();
-	const float dudebottom = dude.GetY() + dude.GetHeight();
-	const float pooright = x + dimension;
-	const float poobottom = y + dimension;
+	const float duderight = dude.GetPos().x + dude.GetWidth();
+	const float dudebottom = dude.GetPos().y + dude.GetHeight();
+	const float pooright = pos.x + dimension;
+	const float poobottom = pos.y + dimension;
 
-	if (duderight >= x &&
-		dude.GetX() <= pooright &&
-		dudebottom >= y &&
-		dude.GetY() <= poobottom)
+	if (duderight >= pos.x &&
+		dude.GetPos().x <= pooright &&
+		dudebottom >= pos.y &&
+		dude.GetPos().y <= poobottom)
 	{
 		teleport = true;
 		StartAdd = true;

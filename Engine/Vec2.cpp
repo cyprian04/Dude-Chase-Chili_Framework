@@ -1,5 +1,6 @@
-#include "Vec2.h"
 #pragma once
+#include "Vec2.h"
+#include <cmath>
 
 Vec2::Vec2(float x_in, float y_in)
 	:
@@ -26,4 +27,29 @@ Vec2 Vec2::operator*(float rhs) const
 Vec2& Vec2::operator*=( float rhs)
 {
 	return *this = *this * rhs;
+}
+
+float Vec2::GetLength() const
+{
+	return std::sqrt(GetLengthSqrt());
+}
+
+float Vec2::GetLengthSqrt() const
+{
+	return x * x + y * y;
+}
+
+Vec2& Vec2::Normalize()
+{
+	return *this = GetNormalize();
+}
+
+Vec2 Vec2::GetNormalize() const
+{
+	const float len = GetLength();
+	if (len != 0.0f)
+	{
+		return *this * (1.0f / len);
+	}
+	return *this;
 }

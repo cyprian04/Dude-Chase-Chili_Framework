@@ -34,7 +34,7 @@ Game::Game(MainWindow& wnd)
 {
 	for (int i = 0; i < nPoo; ++i)
 	{
-	poos[i].Init(xDist(rng), yDist(rng), vDist(rng) * 144.0f, vDist(rng) * 144.0f); //mno¿e przez 144 aby obiekt poruszy³ siê 144 piksele na sekunde(oko³o) // 
+	poos[i].Init(Vec2(xDist(rng), yDist(rng)), Vec2(vDist(rng) * 144.0f, vDist(rng) * 144.0f)); //mno¿e przez 144 aby obiekt poruszy³ siê 144 piksele na sekunde(oko³o) // 
 	}
 }
 
@@ -66,13 +66,13 @@ void Game::UpdateModel()
 				dude.SetIsStopped();
 				for (int i = 0; i < nPoo; i++)
 				{
-					poos[i].StopPoo(0, 0);
+					poos[i].StopPoo(Vec2(0, 0));
 				}
 			}
 		}
 		if (goal.GetTeleport())
 		{
-			goal.Respawn(RectDist(rng), RectDist(rng));			// nadaje wartoæi x i y dla kwadradu(naszego goala) i nastêpnie blokuje teleport   //
+			goal.Respawn(Vec2(RectDist(rng), RectDist(rng)));			// nadaje wartoæi x i y dla kwadradu(naszego goala) i nastêpnie blokuje teleport   //
 		}	
 
 		goal.ChangeColor();

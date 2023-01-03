@@ -11,7 +11,14 @@ public:
 
 	Vec2  operator*(float rhs) const;
 	Vec2& operator*=(float rhs);
-private:
+
+
+	float GetLength() const;
+	float GetLengthSqrt() const;
+	Vec2& Normalize();
+	Vec2 GetNormalize() const;
+public:
+	 
 	float x;
 	float y;
 };
