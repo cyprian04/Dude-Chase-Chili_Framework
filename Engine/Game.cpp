@@ -51,12 +51,13 @@ void Game::UpdateModel()
 	if (isStarted)
 	{
 		float dt = ft.Mark();		// odmierza czas wrócenia do tego momentu w ci¹gu jednej klatki //
-		dude.Update(wnd.kbd, dt);
+
 		dude.ClampToScreen();
+		dude.Update(wnd.mouse, dt);
 		gfx.DrawCircle(100, 100, 50, Colors::Yellow);
 		gfx.DrawCircle(350, 100, 50, Colors::Green);
 		gfx.DrawCircle(600, 100, 50, Colors::Red);
-
+		
 		for (int i = 0; i < nPoo; ++i)
 		{
 			poos[i].ProcessConsumption(dude);

@@ -1,6 +1,5 @@
 #include "Dude.h"
 #include "Graphics.h"
-
 void Dude::ClampToScreen()
 {
 	const float right = pos.x + width;
@@ -347,25 +346,15 @@ void Dude::Draw(Graphics& gfx) const
 	gfx.PutPixel(12 + x_in, 19 + y_in, 0, 0, 0);
 }
 
-void Dude::Update(const Keyboard& kbd, float dt_in)
+void Dude::Update(const Mouse& mouse, float dt_in)
 {
 	if (!isStopped)
-	{
-		if (kbd.KeyIsPressed(VK_RIGHT))
+	{	
+		if (mouse.LeftIsPressed())
 		{
-			pos.x += speed* dt_in; 
-		}
-		if (kbd.KeyIsPressed(VK_LEFT))
-		{
-			pos.x -= speed * dt_in;
-		}
-		if (kbd.KeyIsPressed(VK_DOWN))
-		{
-			pos.y += speed * dt_in;
-		}
-		if (kbd.KeyIsPressed(VK_UP))
-		{
-			pos.y -= speed * dt_in;
+			const Vec2 center = pos + Vec2(float(width) / 2.0f, float(height) / 2.0f);
+			const Vec2 Pointer = Vec2(float(mouse.GetPosX()), float(mouse.GetPosY())) - center;
+			pos += Pointer.GetNormalize() * speed * dt_in;
 		}
 	}
 }
