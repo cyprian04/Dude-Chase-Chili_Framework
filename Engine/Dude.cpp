@@ -353,8 +353,11 @@ void Dude::Update(const Mouse& mouse, float dt_in)
 		if (mouse.LeftIsPressed())
 		{
 			const Vec2 center = pos + Vec2(float(width) / 2.0f, float(height) / 2.0f);
-			const Vec2 Pointer = Vec2(float(mouse.GetPosX()), float(mouse.GetPosY())) - center;
-			pos += Pointer.GetNormalize() * speed * dt_in;
+			const Vec2 Pointer = Vec2(float(mouse.GetPosX()), float(mouse.GetPosY())) - center; // nasza delta, czyli odleg³oœæ miêdzy wciœniêciem myszki a dudem//
+			if (Pointer.GetLengthSqrt() > 2.0f  ) //death zone (oko³o 2px) jeœli dystans jest mniejsz ni¿ 2 to siê nie rusza, przez co nie wibruje //
+			{
+				pos += Pointer.GetNormalize() * speed * dt_in;
+			}
 		}
 	}
 }
