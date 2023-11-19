@@ -59,7 +59,7 @@ private:
 	FrameTimer ft;
 	Dude dude;
 	bool isStarted = false;
-	static constexpr int nPoo = 2;
+	static constexpr int nPoo = 10;
 	Poo poos[nPoo];
 	Goal goal;
 	/********************************/
